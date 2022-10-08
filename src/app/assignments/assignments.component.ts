@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Assignment } from './assignment.model';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Assignment, Menu } from './assignment.model';
 import {constants } from './constants/constants'
 
 @Component({
@@ -7,35 +7,72 @@ import {constants } from './constants/constants'
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css']
 })
-export class AssignmentsComponent implements OnInit {
-  title = "Mon application sur les Assignments 2 !"
-  constants = constants
-  assignments: Assignment [] =  [new Assignment("JAVA/Spring-boot",new Date('2022-10-13'),true
-  ),
-  new Assignment("Web Component",new Date('2022-11-13'),false
-  ),
-  new Assignment("Mini projet Angular",new Date('2023-01-07'),false
-  )]
-  formVisible: boolean = false
-  nomDevoir!: string
-  dateDeRendu!: Date
-  rendu?: boolean
-  assignmentSelectionne: any;
+export class AssignmentsComponent implements OnInit, OnChanges{
+  newAssignment!: Assignment
+  isClickedBtnAll: boolean = false;
+  isClickedBtnAdd: boolean = false;
+  isClickedBtnDelete: boolean = false;
+  isClickedBtnUpdate: boolean = false;
+  isClickedBtnManage: boolean = false;
+  @Input()
+  receivedItem?: Menu
   constructor() {
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    let currentValueOfItemType
+    for(let item in changes){
+      currentValueOfItemType = changes[item]
+    }
+    let item = currentValueOfItemType?.currentValue
+    console.log(item)
+    if(item != undefined){
+
+      if(item.type.trim() == "All"){
+        this.isClickedBtnAll = true
+        this.isClickedBtnAdd = false
+        this.isClickedBtnDelete = false
+        this.isClickedBtnUpdate = false
+        this.isClickedBtnManage = false
+      }
+      if(item.type.trim() == "Add"){
+        this.isClickedBtnAll = false
+        this.isClickedBtnAdd = true
+        this.isClickedBtnDelete = false
+        this.isClickedBtnUpdate = false
+        this.isClickedBtnManage = false
+      }
+      if(item.type.trim() == "Delete"){
+        this.isClickedBtnAll = false
+        this.isClickedBtnAdd = false
+        this.isClickedBtnDelete = true
+        this.isClickedBtnUpdate = false
+        this.isClickedBtnManage = false
+      }
+      if(item.type.trim() == "Update"){
+        this.isClickedBtnAll = false
+        this.isClickedBtnAdd = false
+        this.isClickedBtnDelete = false
+        this.isClickedBtnUpdate = true
+        this.isClickedBtnManage = false
+      }
+      if(item.type.trim() == "Manage"){
+        this.isClickedBtnAll = false
+        this.isClickedBtnAdd = false
+        this.isClickedBtnDelete = false
+        this.isClickedBtnUpdate = false
+        this.isClickedBtnManage = true
+      }
+    }
   }
 
   ngOnInit(): void {
   }
-  onAddAssignmentBtnClick(){
-    this.formVisible = true
+
+  getAddeAssignment(newAssignment: Assignment){
+    console.log(newAssignment)
+    this.newAssignment = newAssignment
+    this.isClickedBtnAll = true
   }
 
-  assignmentClique(assignment: Assignment){
-    this.assignmentSelectionne = assignment
-  }
-  OnNouvelAssignment(event: Assignment){
-    this.assignments.push(event)
-    this.formVisible = false // on veut voir la liste avec le nouvel assignment
-  }
 
 }

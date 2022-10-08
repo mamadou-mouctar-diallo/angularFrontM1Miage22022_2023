@@ -1,0 +1,6 @@
+
+<mat-list *ngFor="let item of menuItems">
+  <mat-list-item  (click)="onSelectedItem(item)">{{item.title}}
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>

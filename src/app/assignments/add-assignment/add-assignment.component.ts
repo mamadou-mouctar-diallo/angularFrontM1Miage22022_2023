@@ -1,5 +1,4 @@
-import { outputAst } from '@angular/compiler';
-import { Component, OnInit, Output , EventEmitter} from '@angular/core';
+import { Component, OnInit, Output , EventEmitter, Input} from '@angular/core';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -8,18 +7,23 @@ import { Assignment } from '../assignment.model';
   styleUrls: ['./add-assignment.component.css']
 })
 export class AddAssignmentComponent implements OnInit {
-  ajoutActive: boolean = true
+  @Input()
+  isClickedBtnAdd: boolean = false
   nomDevoir!: string
   dateDeRendu!: Date
   rendu?: boolean
-  @Output() nouvelAssignment = new EventEmitter<Assignment>()
+  @Output() NewAssignment = new EventEmitter<Assignment>()
   constructor() { }
 
   ngOnInit(): void {
   }
   onSumbit() {
-    const newAssignment = new Assignment(this.nomDevoir, this.dateDeRendu, false);
-    this.nouvelAssignment.emit(newAssignment)
+    const newAssignment = new Assignment();
+    newAssignment.name = this.nomDevoir
+    newAssignment.dateDeRendu = this.dateDeRendu
+    newAssignment.rendu = false
+    this.NewAssignment.emit(newAssignment)
+    console.log("In add componement "+newAssignment)
   }
 
 }

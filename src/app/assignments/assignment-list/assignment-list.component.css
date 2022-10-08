@@ -1,0 +1,11 @@
+.oui {
+  color: green;
+}
+
+.non {
+  color: red;
+}
+mat-list-item
+{
+  cursor: pointer;
+}

@@ -1,7 +1,14 @@
 <div class="container">
-  <mat-card *ngIf="assignmentTransmis">
-    <mat-card-title>{{assignmentTransmis.getName()}}</mat-card-title>
-    <mat-card-subtitle>{{assignmentTransmis.getDateDeRendu() | date}}</mat-card-subtitle>
-    <mat-checkbox *ngIf="!assignmentTransmis.getRendu()" (click) ="onAssignmentRendu()">Assignment rendu</mat-checkbox>
+  <mat-card *ngIf="assignmentTransmis && isClicked">
+    <mat-card-title >{{assignmentTransmis.name}}</mat-card-title>
+    <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
+    <div>
+      <div>
+        <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click) ="onAssignmentRendu()">Assignment rendu</mat-checkbox>
+      </div>
+      <div>
+        <button mat-button  (click) = "onDelete()">DELETE</button>
+      </div>
+    </div>
   </mat-card>
 </div>

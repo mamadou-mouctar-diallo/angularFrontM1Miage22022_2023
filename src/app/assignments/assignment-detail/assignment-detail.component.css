@@ -1,0 +1,12 @@
+button{
+  background-color: rgb(200, 31, 127);
+  color: white;
+}
+mat-card div{
+  display: flex;
+  align-content: space-around;
+  padding: 10px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: stretch
+}

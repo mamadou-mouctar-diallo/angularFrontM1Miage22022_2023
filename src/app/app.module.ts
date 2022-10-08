@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,19 +11,42 @@ import {MatInputModule} from '@angular/material/input'
 import { FormsModule } from "@angular/forms";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatListModule} from '@angular/material/list'
+import {MatListModule, MatSelectionList} from '@angular/material/list'
 import {MatCardModule} from '@angular/material/card'
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { AssignmentDetailComponent } from './assignments/assignment-detail/assignment-detail.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
+import { AssignmentToolbarComponent } from './assignments/assignment-toolbar/assignment-toolbar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { AssignmentListMenuComponent } from './assignments/assignment-list-menu/assignment-list-menu.component';
+import { AssignmentListComponent } from './assignments/assignment-list/assignment-list.component';
+import { DeleteAssignmentComponent } from './assignments/delete-assignment/delete-assignment.component';
+import { UpdateAssignmentComponent } from './assignments/update-assignment/update-assignment.component';
+import { ManageAssignmentComponent } from './assignments/manage-assignment/manage-assignment.component';
+import { AssignmentConnexionComponent } from './assignment-connexion/assignment-connexion.component';
+
+const routes: Routes = [
+  {path: '', component: AssignmentToolbarComponent},
+  {path: 'home', component: AssignmentToolbarComponent},
+  {path: 'add', component: AddAssignmentComponent},
+  {path: 'assignment/:id', component: AssignmentDetailComponent}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     AssignmentsComponent,
     AssignmentDetailComponent,
-    AddAssignmentComponent
+    AddAssignmentComponent,
+    AssignmentToolbarComponent,
+    AssignmentListMenuComponent,
+    AssignmentListComponent,
+    DeleteAssignmentComponent,
+    UpdateAssignmentComponent,
+    ManageAssignmentComponent,
+    AssignmentConnexionComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +61,13 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
     MatNativeDateModule,
     MatListModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+ }

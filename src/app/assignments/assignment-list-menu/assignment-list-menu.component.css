@@ -1,0 +1,9 @@
+mat-list:hover{
+background-color: cadetblue;
+cursor: pointer;
+}
+mat-list-item:hover{
+color: white;
+}
+
+

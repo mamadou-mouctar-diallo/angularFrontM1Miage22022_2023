@@ -1,0 +1,20 @@
+<main *ngIf="isClickedBtnAll">
+<mat-list *ngFor="let assignment of assignments">
+  <h3 mat-subheader>Date de rendu: {{assignment.dateDeRendu | date}}</h3>
+  <mat-list-item (click) ="assignmentClique(assignment)">
+   <span
+    [ngClass]="{'oui': assignment.rendu}" *ngIf="assignment.rendu; else nonRendu">
+    {{"Le devoir intitulé "+assignment.name+" "+constants.rendu}}
+  </span>
+  <ng-template #nonRendu>
+    <span
+    [ngClass]="{'non': !assignment.rendu}" >
+    {{"Le devoir intitulé "+assignment.name+" "+constants.nonRendu}}
+  </span>
+  </ng-template>
+</mat-list-item>
+<mat-divider></mat-divider>
+</mat-list>
+<app-assignment-detail [assignmentTransmis]="assignmentSelectionne" [isClicked]="clicked" >
+</app-assignment-detail>
+</main>
