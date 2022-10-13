@@ -29,9 +29,11 @@ import { AssignmentConnexionComponent } from './assignment-connexion/assignment-
 
 const routes: Routes = [
   {path: '', component: AssignmentToolbarComponent},
-  {path: 'home', component: AssignmentToolbarComponent},
+  {path: 'home', component: AssignmentListComponent},
   {path: 'add', component: AddAssignmentComponent},
-  {path: 'assignment/:id', component: AssignmentDetailComponent}
+  {path: 'delete/:id', component: AssignmentDetailComponent},
+  {path: 'update/:id', component: UpdateAssignmentComponent},
+  {path: 'manage', component: ManageAssignmentComponent}
 ]
 
 @NgModule({

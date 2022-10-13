@@ -8,11 +8,11 @@ import { Menu } from '../assignment.model';
 })
 export class AssignmentListMenuComponent implements OnInit {
   menuItems: Menu[] = [
-    new Menu('Liste des devoirs', 'All'),
-  new Menu('Ajouter un devoir', 'Add'),
-  new Menu('Modification d\'un devoir', 'Update'),
-  new Menu('Suppression d\'un devoir','Delete'),
-  new Menu('Génération de données de test','Manage')];
+    new Menu('Liste des devoirs', 'home'),
+  new Menu('Ajouter un devoir', 'add'),
+  new Menu('Modification d\'un devoir', 'update'),
+  new Menu('Suppression d\'un devoir','delete'),
+  new Menu('Génération de données de test','manage')];
   @Output() itemClicked = new EventEmitter<Menu>()
 
   constructor() { }

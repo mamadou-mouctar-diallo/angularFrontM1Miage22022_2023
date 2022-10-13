@@ -10,6 +10,8 @@
   <mat-sidenav [(opened)]="opened" mode="side">
 
     <app-assignment-list-menu (itemClicked) = "onItemClick($event)"></app-assignment-list-menu>
+    <button routerLink="/add">add assignment</button>
+    <router-outlet name = "side"></router-outlet>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-assignments [receivedItem]="receivedItem"></app-assignments>
