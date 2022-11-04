@@ -1,1 +1,26 @@
-<p>delete-assignment works!</p>
+<mat-list *ngFor="let assignment of assignments">
+  <h3 mat-subheader>Date de rendu: {{ assignment.dateDeRendu | date }}</h3>
+  <mat-list-item>
+    <div class="align-item">
+      <div class="assignment-title">
+        <span
+          [ngClass]="{ oui: assignment.rendu }"
+          *ngIf="assignment.rendu; else nonRendu"
+        >
+          {{ "Le devoir intitulé " + assignment.name + " " + constants.rendu }}
+        </span>
+        <ng-template #nonRendu>
+          <span [ngClass]="{ non: !assignment.rendu }">
+            {{
+              "Le devoir intitulé " + assignment.name + " " + constants.nonRendu
+            }}
+          </span>
+        </ng-template>
+      </div>
+      <div class="container-btn-delete">
+        <button mat-button (click)="onDelete(assignment)">DELETE</button>
+      </div>
+    </div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>

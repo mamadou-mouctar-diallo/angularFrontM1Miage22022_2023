@@ -1,5 +1,7 @@
 import { Component, OnInit, Output , EventEmitter, Input} from '@angular/core';
+import { AssignmentsServicesService } from 'src/app/services/assignments-services.service';
 import { Assignment } from '../assignment.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-assignment',
@@ -13,7 +15,7 @@ export class AddAssignmentComponent implements OnInit {
   dateDeRendu!: Date
   rendu?: boolean
   @Output() NewAssignment = new EventEmitter<Assignment>()
-  constructor() { }
+  constructor(private assignmentService: AssignmentsServicesService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +24,9 @@ export class AddAssignmentComponent implements OnInit {
     newAssignment.name = this.nomDevoir
     newAssignment.dateDeRendu = this.dateDeRendu
     newAssignment.rendu = false
-    this.NewAssignment.emit(newAssignment)
-    console.log("In add componement "+newAssignment)
+    this.assignmentService.addAssignment(newAssignment).subscribe(msg => console.log(msg))
+    console.log("In add componement " + newAssignment.name)
+    this.router.navigate(["/home"]);
   }
 
 }

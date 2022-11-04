@@ -11,7 +11,8 @@ export class AssignmentToolbarComponent implements OnInit {
   typeIcon: String = "menu"
   myAppTitle: String = "Student Assignments"
   receivedItem?: Menu = new Menu("", "All")
-isConnected: any;
+  isConnected?: boolean = false;
+  routerToComponent: String = this.isConnected? "/home":"/connect"
 toogleMenu() {
 this.opened = !this.opened
 this.typeIcon = this.opened ? "close": "menu";
@@ -24,6 +25,12 @@ this.typeIcon = this.opened ? "close": "menu";
 
   onItemClick(item: Menu){
     this.receivedItem = item
+  }
+  onBtnClicked()
+  {
+    console.log(this.routerToComponent)
+    this.isConnected = !this.isConnected
+    this.routerToComponent = this.isConnected? "/home":"/connect"
   }
 
 }

@@ -1,20 +1,30 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="toogleMenu()">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home">{{typeIcon}}</mat-icon>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="toogleMenu()"
+  >
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="home"
+      >{{ typeIcon }}</mat-icon
+    >
   </button>
-  <span>{{myAppTitle}}</span>
+  <span>{{ myAppTitle }}</span>
   <span class="example-spacer"></span>
-  <app-assignment-connexion *ngIf="!isConnected" (eventEmitter) = "isConnected"></app-assignment-connexion>
+  <div class="example-container">
+    <button mat-button [routerLink]=[routerToComponent] (click)="onBtnClicked()">{{isConnected? 'Sign Out': 'Sign In'}} </button>
+  </div>
 </mat-toolbar>
-<mat-sidenav-container >
+<mat-sidenav-container>
   <mat-sidenav [(opened)]="opened" mode="side">
-
-    <app-assignment-list-menu (itemClicked) = "onItemClick($event)"></app-assignment-list-menu>
-    <button routerLink="/add">add assignment</button>
-    <router-outlet name = "side"></router-outlet>
+    <app-assignment-list-menu
+      (itemClicked)="onItemClick($event)"
+    ></app-assignment-list-menu>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-assignments [receivedItem]="receivedItem"></app-assignments>
+    <app-assignments></app-assignments>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

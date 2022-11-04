@@ -1,0 +1,25 @@
+.oui {
+  color: green;
+}
+
+.non {
+  color: red;
+}
+
+button{
+  background-color: rgb(200, 31, 127);
+  color: white;
+  align-self: flex-end;
+}
+
+button:hover{
+  background-color: rgb(107, 13, 66);
+}
+
+.align-item{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  align-content: space-around;
+}
+

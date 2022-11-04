@@ -28,12 +28,13 @@ import { ManageAssignmentComponent } from './assignments/manage-assignment/manag
 import { AssignmentConnexionComponent } from './assignment-connexion/assignment-connexion.component';
 
 const routes: Routes = [
-  {path: '', component: AssignmentToolbarComponent},
+  {path: '', component: AssignmentsComponent},
   {path: 'home', component: AssignmentListComponent},
   {path: 'add', component: AddAssignmentComponent},
-  {path: 'delete/:id', component: AssignmentDetailComponent},
-  {path: 'update/:id', component: UpdateAssignmentComponent},
-  {path: 'manage', component: ManageAssignmentComponent}
+  {path: 'delete', component: DeleteAssignmentComponent},
+  {path: 'update', component: UpdateAssignmentComponent},
+  {path: 'manage', component: ManageAssignmentComponent },
+  {path: 'connect', component: AssignmentConnexionComponent}
 ]
 
 @NgModule({
